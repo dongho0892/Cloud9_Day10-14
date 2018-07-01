@@ -1,0 +1,26 @@
+<!-- 카페 정보 ㄴㄴ -->
+<!-- 카페에 등록된 글 -->
+
+<h1> <%= @cafe.title %> </h1>  <!-- 카페의 타이틀을 적어주기 -->
+<br>
+
+
+  <!--현재 유저가 가입을 하지 않았다면 => 가입하기 버튼이 확인이 됨.-->
+<!--<@%=  unless @cafe.is_member?(current_user) %>-->
+<%= link_to '카페 가입하기', "/join_cafe/#{@cafe.id}", method: "POST", class: 'btn btn-warning text-white' %>
+                            <!--join_cafe(@cafe)-->
+<!--<@%  end %>                            -->
+<br>
+<ul class="list-group">
+<%= link_to 'New Post', new_post_path %>
+  <% @cafe.posts.each do |post| %>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <%= link_to "#{post.title}", post_path(post) %>
+    <span class="badge badge-primary badge-pill"><%= post.comments.count %></span>
+  </li>
+  <% end %>
+</ul>
+
+<!-- 새글 등록 버튼 -->
+<%= link_to '새 글쓰기', new_post_path(cafe_id: @cafe.id), class: 'btn btn-info' %>
+          <!-- cafe_id: @cafe.id : 파라미터가 다음 페이지로 넘어감 => 다음 페이지에서 또 이렇게 쓰면 또 넘어감 -->

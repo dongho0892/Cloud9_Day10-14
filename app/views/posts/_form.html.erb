@@ -1,0 +1,49 @@
+<%= form_for(post, html:{class: 'text-center'}) do |f| %>
+    <!--post 모델이 갖고 있는 속성(컬럼)과 text_field 가 일치 해야함.
+    아닌  것을 입력한다면 메서드가 없다고 에러가 나옴.-->
+              <!-- html:{class: 'text-center'} -->
+ 
+
+  <!-- 저장이 안됬을 때 어떤 오류에 의해서 발생을 했는지 보여주는 부분임 -->
+  <!-- (사이트 상에서 에러가 뜨게 되는 경우가 아니라) -->
+  
+  <!--<@% if post.errors.any? %>-->
+  <!--  <div id="error_explanation">-->
+  <!--    <h2><@%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>-->
+
+  <!--    <ul>-->
+  <!--    <@% post.errors.full_messages.each do |message| %>-->
+  <!--      <li><@%= message %></li>-->
+  <!--    <@% end %>-->
+  <!--    </ul>-->
+  <!--  </div>-->
+  <!--<@% end %>-->
+
+<!--감춘 상태에서 파라미터 값을 넘길 수 있음-->
+  <%= f.hidden_field :daum_id, value: params[:cafe_id] %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %> <!-- # id :paba -->
+  </div>        <!-- 컬럼 -->
+                                <!-- db와 관련 없는 것들 쓰면 에러남. -->
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>          <!-- 컬럼 -->
+      <!-- 컬럼에 존재하지 않으면 사용이 불가능함 -->
+      
+  <div class="field">     <!-- => 새글쓰기 상에서 나옴 --> 
+    <%= f.label :image_path %>
+    <%= f.file_field :image_path, class: 'form-control' %>
+  </div>          
+      
+      
+  <div class="actions">
+    <%= f.submit '작성하기', class: 'btn btn-info' %>
+    <%= link_to '뒤로가기', posts_path, class: 'btn btn-warning text-white' %>
+    <!--   posts GET  /posts(.:format)    posts#index  -->
+  </div>
+  
+<% end %>
+
+<!-- form_for -->

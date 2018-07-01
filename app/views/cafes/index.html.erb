@@ -1,0 +1,19 @@
+<h1> 다음 카페에 오신 것을 환영합니다. </h1>
+
+<div class="list-group">
+    <% @cafes.each do |cafe| %>   <!-- 로직이기 때문에 눈에 안보여야함 -->
+      <!--<a href="#",class="list-group-item list-group-item-action disabled ">Vestibulum at eros</a>-->
+      <%= link_to cafe.title, cafe_path(cafe), class: "list-group-item list-group-item-action disabled" %>
+                            <!-- cafe_path => show action을 호출함.-->
+            <!-- cafe GET    /cafes/:id(.:format)     cafes#show -->
+    <% end %>
+</div>
+
+<div class="text_center">
+    <%= link_to "카페개설하기", new_cafe_path, class: 'btn btn-success' %>
+</div>
+
+<!-- 카페를 만든 마스터 유저는 있으나, 그걸 지정해주지 않아서 로그인상태에서 목록이 안뜬 거임. -->
+
+
+

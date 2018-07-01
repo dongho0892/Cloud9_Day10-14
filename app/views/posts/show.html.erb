@@ -1,0 +1,70 @@
+<!-- <p id="notice"><#%= notice %></p> -->
+<h1>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</h1>
+<hr/>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<p>
+  <strong>ImagePath:</strong>
+  <img src="<%= @post.image_path %>" width="100%" />
+</p>
+
+<p>
+  <strong>Thumb Fill: 원본 사진의 가운데를 중심으로 사이즈에 맞춰 자름</strong>
+  <img src="<%= @post.image_path.thumb_fill.url %>"/>
+</p>
+
+<p>
+  <strong>Thumb Fit: 큰 쪽의 비율에 맞춰서 조정</strong>
+  <img src="<%= @post.image_path.thumb_fit.url %>"/>
+</p>
+
+
+
+
+
+
+<!--  @post 사용 => post.id 를 넣어도 되고, 객체 자체를 넘겨줘도 이상 없음 -->
+<%= link_to '수정', edit_post_path(@post), class: 'btn btn-warning text-white' %> 
+                                <!--@ 속해있는 카페 객체가 나옴 + cafe_path로 이동함.-->
+<%= link_to '목록', cafe_path(@post.daum), class: 'btn btn-info' %>
+<%= link_to '삭제', post_path(@post), method: 'DELETE', class: 'btn btn-danger', data: {confirm: "삭제하시겠습니까?"} %>
+                                    <!--(method 지정해줘야 함!)-->
+<!--댓글 입력-->
+<%= render 'comments/form', post: @post %>
+
+
+<!--댓글리스트-->
+ <!--게시물이 갖고 있는 모든 댓글을 갖고 오겠다.-->
+ 
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Content</th>
+      <th scope="col">Button</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @post.comments.each do |comment| %>
+      <tr>
+        <th scope="row"><%= comment.id %></th>
+        <td><%= comment.content %></td>
+        <td><%= link_to '삭제',"/comments/#{comment.id}", method: "delete", class: 'btn btn-warning' %> </td>
+      </tr>     <!-- 삭제 버튼 만들때, url 값, 넣고, 메서드 넣고!! -->
+    <% end %>
+  </tbody>
+</table>
+
+
+
+<!--post_controllers 내의-->
+    <!--def set_post-->
+    <!--  @post = Post.find(params[:id])      # 우리가 볼 포스트의 값이 들어가있음.-->
+    <!--end-->

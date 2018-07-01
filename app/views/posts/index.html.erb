@@ -1,0 +1,43 @@
+<h1>Posts</h1>
+
+<ul class="list-group">
+<%= link_to 'New Post', new_post_path %>
+  <% @posts.each do |post| %>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <%= link_to "#{post.title}", post_path(post) %>
+        <!-- Prefix 쓰는 방법! post_path -->
+                                  <!--show, delete 페이지 => @post가 될것임-->
+        <!-- 몇번째의 글인지 알아야됨. / 가변수|post|를 넣어줌. -->
+    <span class="badge badge-primary badge-pill"><%= post.comments.count %></span>
+  </li>
+  <% end %>
+</ul>
+<div class="text-center">
+  <%= link_to 'New Post', new_post_path, class: 'btn btn-info'%>
+</div>
+
+
+
+<!--<table>-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>Title</th>-->
+<!--      <th>Content</th>-->
+<!--      <th colspan="3"></th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+
+<!--  <tbody>-->
+<!--    <#% @posts.each do |post| %>-->
+<!--      <tr>-->
+<!--        <td><#%= post.title %></td>-->
+<!--        <td><#%= post.content %></td>-->
+<!--        <td><#%= link_to 'Show', post %></td>-->
+<!--        <td><#%= link_to 'Edit', edit_post_path(post) %></td>-->
+<!--        <td><#%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+<!--      </tr>-->
+<!--    <#% end %>-->
+<!--  </tbody>-->
+<!--</table>-->
+
+<!--<br>-->

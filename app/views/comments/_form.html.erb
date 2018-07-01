@@ -1,0 +1,12 @@
+<%= form_tag("/posts/#{post.id}/comments/create") do %>
+<!-- # 아이디 값이 없으니까 받아줘야함.
+# show.html.erb 에서 @post로 다 쓰고 있음 => 여기서도 쓸 수 있음.
+# <@%= render 'comments/form', post: @post %> 를 show.html.erb에 추가함.
+-->
+    <!--# 입력폼--><br>
+    <%= text_field_tag(:content, nil, class: "form-control", placeholder: "내용을 입력해주세요.") %>
+    <!--# 전송버튼--><br>
+    <%= submit_tag("댓글작성", class: 'btn btn-primary') %>
+<br>
+
+<% end %>
